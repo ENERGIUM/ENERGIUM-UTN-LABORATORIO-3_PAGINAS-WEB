@@ -44,15 +44,15 @@
         <form id="form-consulta" action="#" method="post">
           <div class="mb-3">
             <label for="inputName" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="inputName">
           </div>
           <div class="mb-3">
             <label for="inputLastName" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="inputLastName" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="inputLastName">
           </div>
           <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="inputEmail">
           </div>
           <div class="mb-3">
             <label for="inputQuerry" class="form-label">Consulta</label>
@@ -144,7 +144,7 @@
         alert("Por favor ingrese un email");
         return false;
       } else if(flagEnviar == false){
-        alert("Email no soportado o invalido, Por favor intente de nuevo.");
+        alert("Email no soportado o invalido, Por favor intente de nuevo. \nEmails soportados: \n"+emailSoportados[0]+"\n"+emailSoportados[1]+"\n"+emailSoportados[2]);
         return false;
       }
     }
