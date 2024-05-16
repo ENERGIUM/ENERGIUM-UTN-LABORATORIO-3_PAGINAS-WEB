@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/my_style.css">
+    <link rel="icon" type="image/x-icon" href="../img/icon/favicon.ico">
+    <title>Maderos S.A.</title>
+  </head>
+  <body id="fondo_formulario">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="presentacion.html"><h2>Maderos S.A.</h2></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="productos.html">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="presentacion.html">Quienes Somos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contacto.html">Contacto</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Consulta/Pedido</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </nav>
+    </header>
+    <section class="container">
+      <div id="div-consulta">
+        <h3>Formulario para realizar consultas o pedidos con respecto a nuestros productos</h3>
+        <form id="form-consulta" action="#" method="post">
+          <div class="mb-3">
+            <label for="inputName" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="inputLastName" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="inputLastName" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="inputQuerry" class="form-label">Consulta</label>
+            <textarea class="form-control" id="inputQuerry"></textarea>
+          </div>
+          <div class="mb-3 form-check">
+            <input required type="checkbox" class="form-check-input" id="inputConfirmDatos">
+            <label class="form-check-label" for="inputConfirmDatos">Confirmar Datos</label>
+          </div>
+          <button class="btn btn-primary" onclick="validarForm()">Enviar</button>
+        </form>
+      </div>
+    </section>
+    <footer>
+      <div class="row" id="content-footer">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card text-center">
+            <div class="card-header">
+              <h5>Nuestras redes</h5>
+            </div>
+            <div class="card-body">
+              <div id="redes-footer">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><a href="#" class="btn btn-outline-dark redes-footer">Instagram</a></li>
+                  <li class="list-inline-item"><a href="#" class="btn btn-outline-dark redes-footer">Facebook</a></li>
+                  <li class="list-inline-item"><a href="#" class="btn btn-outline-dark redes-footer">X/Twitter</a></li>
+                  <li class="list-inline-item"><a href="#" class="btn btn-outline-dark redes-footer">Linkedin</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card text-center">
+            <div class="card-header">
+              <h4>Maderos S.A.</h4>
+            </div>
+            <div class="card-body center">
+              <div class="redes">
+                <a href="../html/contacto.html" class="btn btn-outline-dark">Contacto</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="../js/bootstrap.js"></script>
+  <script>
+
+    function validarForm(){
+      var flagEnviar = true;
+      flagEnviar = (validarNombre() && validarApellido() && validarEmail() && validarConsulta() && validarCheckDatos());
+      if (flagEnviar){
+        document.getElementById("form-consulta").submit();
+        alert("Consulta enviada, Gracias por su consulta");
+      }
+    }
+   function validarNombre(){
+    var name = document.getElementById("inputName").value;
+      if(name == ""){
+        alert("Por favor, ingrese un Nombre");
+        return false;
+      }else return true;
+    }
+
+    function validarApellido(){
+    var lastname = document.getElementById("inputLastName").value;
+      if(lastname == ""){
+        alert("Por favor, ingrese un Apellido");
+        return false;
+      }else return true;
+    }
+    function validarEmail(){
+      var flagEnviar = false;
+      var emailSoportados = ["gmail.com", "hotmail.com", "outlook.com"];
+      var email = document.getElementById("inputEmail").value;
+      var dominio = email.substring(email.indexOf("@")+1);
+      // console.log("email: "+email);
+      // console.log("dominio: "+dominio);
+      for (var i = 0; i < emailSoportados.length; i++){
+        if(dominio == emailSoportados[i]){
+          flagEnviar = true;
+          return true;
+          break;
+        }
+      }
+      if(flagEnviar == false && email == ""){
+        alert("Por favor ingrese un email");
+        return false;
+      } else if(flagEnviar == false){
+        alert("Email no soportado o invalido, Por favor intente de nuevo.");
+        return false;
+      }
+    }
+
+    function validarConsulta(){
+      var consulta = document.getElementById("inputQuerry").value;
+      if(consulta == ""){
+        alert("Por favor, ingrese una consulta");
+        return false;
+      }else return true;
+    }
+
+    function validarCheckDatos(){
+      var dato = document.getElementById("inputConfirmDatos").checked;
+      //console.log("check :" +dato);
+      if(!(dato)){
+        alert("Por favor, Confirme los datos");
+        return false;
+      }else return true;
+    }
+  </script>
+</html>
