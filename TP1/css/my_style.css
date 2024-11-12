@@ -1,3 +1,8 @@
+/* *{
+    border: solid 1px red;
+} */
+
+
 /* header */
 #navbar{
     font-size:larger;
@@ -7,6 +12,7 @@
 /* index.html file */
 #fondo-img-index{
     background-image: url(../img/fondo/fo1.jpg);
+
 }
 
 .fondo-fijo{
@@ -89,3 +95,9 @@
     margin: 5% 0.2% 5% 0.2%;
 }
 /*  */
+/* @media(min-width: 768px)
+{
+    section{
+        font-size:larger !important;
+    }
+} */
