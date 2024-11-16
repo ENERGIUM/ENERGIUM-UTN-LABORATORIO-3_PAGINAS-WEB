@@ -54,6 +54,10 @@
             <input type="text" class="form-control" id="inputLastName">
           </div>
           <div class="mb-3">
+            <label for="inputFechaNacimiento" class="form-label">Fecha Nacimiento</label>
+            <input type="date" class="form-control" id="inputFechaNacimiento" min="1930-01-01">
+          </div>
+          <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
             <input type="email" class="form-control" id="inputEmail">
           </div>
@@ -62,8 +66,8 @@
             <textarea class="form-control" id="inputQuerry"></textarea>
           </div>
           <div class="mb-3 form-check">
-            <input required type="checkbox" class="form-check-input" id="inputConfirmDatos">
             <label class="form-check-label" for="inputConfirmDatos">Confirmar Datos</label>
+            <input required type="checkbox" class="form-check-input" id="inputConfirmDatos">
           </div>
           <button class="btn btn-primary" onclick="validarForm()">Enviar</button>
         </form>
@@ -108,7 +112,7 @@
 
     function validarForm(){
       var flagEnviar = true;
-      flagEnviar = (validarNombre() && validarApellido() && validarEmail() && validarConsulta() && validarCheckDatos());
+      flagEnviar = (validarNombre() && validarApellido() && validarFechaNacimiento() && validarEmail() && validarConsulta() && validarCheckDatos());
       if (flagEnviar){
         document.getElementById("form-consulta").submit();
         alert("Consulta enviada, Gracias por su consulta");
@@ -129,13 +133,40 @@
         return false;
       }else return true;
     }
+
+    function validarFechaNacimiento(){
+      let fechaNac = document.getElementById("inputFechaNacimiento").value;
+      const fechaActual = new Date();
+      let sep = fechaNac.indexOf('-');
+      let anioFechaNac = fechaNac.substring(0, sep);
+      // console.log("fechaNac: ",fechaNac);
+      // console.log("fechaActual.getFullYear: ",fechaActual.getFullYear());
+      // console.log("anioFechaNac", anioFechaNac);
+      if (fechaNac == ""){
+        alert("Por favor, ingrese una fecha de nacimiento");
+        return false;
+      }else if (anioFechaNac < 1930){
+        alert("La fecha ingresada es inferior a 01/01/1930");
+        return false;
+      }else if ((fechaActual.getFullYear() - anioFechaNac) < 18){
+        alert("Usted es menor de edad, para realizar consultas debe ser mayor a 18 años");
+        return false;
+      }
+      else return true;
+    }
+
     function validarEmail(){
       var flagEnviar = false;
       var emailSoportados = ["gmail.com", "hotmail.com", "outlook.com"];
       var email = document.getElementById("inputEmail").value;
+      if (email != "" && email.indexOf("@") == -1){
+        alert("Por favor revise si a ingresado @");
+        return false;
+      }
       var dominio = email.substring(email.indexOf("@")+1);
       // console.log("email: "+email);
       // console.log("dominio: "+dominio);
+      // console.log(email.indexOf("@"));
       for (var i = 0; i < emailSoportados.length; i++){
         if(dominio == emailSoportados[i]){
           flagEnviar = true;
