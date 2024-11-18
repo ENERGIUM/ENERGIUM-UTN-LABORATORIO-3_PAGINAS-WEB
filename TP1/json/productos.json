@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Madera Aserrada de Pino",
+        "decripcion": "Tablas y vigas de madera aserrada de pino de alta calidad. Perfectas para proyectos de construcción, carpintería y bricolaje.",
+        "formaDisponible": "Dimensiones disponibles: 2 pulgadas x 4 pulgadas, 2 pulgadas x 6 pulgadas, 4 pulgadas x 4 pulgadas",
+        "imagen": "/img/productos/po1.jpg"
+    },
+    {
+        "title": "Tableros de MDF",
+        "decripcion": "Tableros de MDF de alta densidad ideales para la fabricación de muebles y proyectos de carpintería.",
+        "formaDisponible": "Espesor disponible: 3mm, 6mm, 9mm, 12mm, 18mm",
+        "imagen": "/img/productos/po2.jpeg"
+    },
+    {
+        "title": "Decking de Madera Tratada",
+        "decripcion": "Tablas de madera tratada especialmente diseñadas para terrazas y áreas al aire libre.",
+        "formaDisponible": "Dimensiones disponibles: 5/4 pulgadas x 6 pulgadas, 2 pulgadas x 6 pulgadas.",
+        "imagen": "/img/productos/po3.jpg"
+    },
+    {
+        "title": "Puertas de Madera Maciza",
+        "decripcion": "Puertas interiores y exteriores fabricadas con madera maciza de alta calidad.",
+        "formaDisponible": "Puertas interiores y exteriores fabricadas con madera maciza de alta calidad.",
+        "imagen": "/img/productos/po4.jpg"
+    },
+    {
+        "title": "Pellets de Madera para Calefacción",
+        "decripcion": "Combustible ecológico para estufas y calderas de biomasa.",
+        "formaDisponible": "Bolsas de 15 kg para un fácil manejo y almacenamiento.",
+        "imagen": "/img/productos/po5.jpg"
+    },
+    {
+        "title": "Cajones de Madera para Embalaje",
+        "decripcion": "Cajones y embalajes de madera robustos y personalizables para transporte y almacenamiento de mercancías.",
+        "formaDisponible": "Tamaños disponibles: Personalizables según las necesidades del cliente.",
+        "imagen": "/img/productos/po6.jpg"
+    }
+]
