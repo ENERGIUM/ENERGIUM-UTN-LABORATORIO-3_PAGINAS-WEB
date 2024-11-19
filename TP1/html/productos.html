@@ -42,92 +42,7 @@
       </nav>
     </header>
     <section id="productos" class="flex-grow-1">
-      <div id="content-fabricados">
-        <div class="card mb-3 card-flex">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../img/productos/po1.jpg" class="img-fluid rounded-start" alt="tablas madera pino">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Madera Aserrada de Pino</h5>
-                <p class="card-text">Tablas y vigas de madera aserrada de pino de alta calidad. Perfectas para proyectos de construcción, carpintería y bricolaje.</p>
-                <p class="card-text">Dimensiones disponibles: 2 pulgadas x 4 pulgadas, 2 pulgadas x 6 pulgadas, 4 pulgadas x 4 pulgadas</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3 card-flex">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../img/productos/po2.jpeg" class="img-fluid rounded-start" alt="Tableros MDF">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Tableros de MDF</h5>
-                <p class="card-text">Tableros de MDF de alta densidad ideales para la fabricación de muebles y proyectos de carpintería.</p>
-                <p class="card-text">Espesor disponible: 3mm, 6mm, 9mm, 12mm, 18mm</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3 card-flex">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../img/productos/po3.jpg" class="img-fluid rounded-start" alt="Decking de Madera Tratada">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Decking de Madera Tratada</h5>
-                <p class="card-text">Tablas de madera tratada especialmente diseñadas para terrazas y áreas al aire libre.</p>
-                <p class="card-text">Dimensiones disponibles: 5/4 pulgadas x 6 pulgadas, 2 pulgadas x 6 pulgadas.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3 card-flex">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../img/productos/po4.jpg" class="img-fluid rounded-start" alt="Puertas de Madera Maciza">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Puertas de Madera Maciza</h5>
-                <p class="card-text">Puertas interiores y exteriores fabricadas con madera maciza de alta calidad.</p>
-                <p class="card-text">Dimensiones estándar: 80 pulgadas de alto x 30/32/36 pulgadas de ancho.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3 card-flex">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../img/productos/po5.jpg" class="img-fluid rounded-start" alt="Pellets de Madera para Calefacción">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Pellets de Madera para Calefacción</h5>
-                <p class="card-text">Combustible ecológico para estufas y calderas de biomasa.</p>
-                <p class="card-text">Bolsas de 15 kg para un fácil manejo y almacenamiento.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3 card-flex">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../img/productos/po6.jpg" class="img-fluid rounded-start" alt="Cajones de Madera para Embalaje">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Cajones de Madera para Embalaje</h5>
-                <p class="card-text">Cajones y embalajes de madera robustos y personalizables para transporte y almacenamiento de mercancías.</p>
-                <p class="card-text">Tamaños disponibles: Personalizables según las necesidades del cliente.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="content-fabricados" class="container-fluid"></div>
     </section>
     <footer class="container-fluid">
       <div class="row" id="content-footer">
@@ -166,7 +81,7 @@
     <script>
       ObtenerJsonYConstruirHTML('../json/productos.json', 'content-fabricados');
       async function ObtenerJsonYConstruirHTML(url, id_element_padre){
-        const element_padre = document.getElementById(id_element_padre);
+        // const element_padre = document.getElementById(id_element_padre);
         const init ={method: 'GET',
                   headers: {
                     'Content-type':'application/json'
@@ -182,7 +97,6 @@
               })
               .then(data => {
                 const productos = data; 
-                console.log(productos[0].title);
                 // let div1 = document.createElement('div');
                 // div1.setAttribute('class','row g-0');
                 // let div2 = document.createElement('div');
@@ -197,24 +111,32 @@
                 // img.setAttribute('alt',productos[0].title);
                 // let div5 = document.createElement('div');
                 // div5.setAttribute('class', 'col-md-8');
-                let prueva;
-                for (const element of productos){
-                  let tag1 = `<div class="card mb-3 card-flex">
-                            <div class="row g-0">
-                            <div class="col-md-4">`;
-                  let tag2 = '<img src="'+element.imagen+'" class="img-fluid rounded-start" alt="'+productos[0].title+'">'
+                let contenido = "";
+                let elementos = "";
+                let elemento = "";
+                for (let i = 0; i < productos.length; i++){
+                  let tag1 = `<div class="col-sm-6 mb-3">
+                              <div class="card  card-flex">
+                              <div class="row g-0">
+                              <div class="col-md-4">`;
+                  let tag2 = '<img src="'+productos[i].imagen+'" class="img-fluid rounded-start" alt="'+productos[i].title+'">'
                   let tag3 = `</div>
                               <div class="col-md-8">
                               <div class="card-body">`;
-                  let tag4 = '<h5 class="card-title">'+element.title+'</h5>';
-                  let tag5 = '<p class="card-text">'+element.decripcion+'</p>';
-                  let tag6 = '<p class="card-text">'+element.formaDisponible+'</p>';
-                  let tag7 = `</div></div></div></div>`;
-
-                  prueva = tag1+tag2+tag3+tag4+tag5+tag6+tag7 + prueva;
-                }
-                
-                document.getElementById(id_element_padre).innerHTML = prueva;
+                  let tag4 = '<h5 class="card-title">'+productos[i].title+'</h5>';
+                  let tag5 = '<p class="card-text">'+productos[i].decripcion+'</p>';
+                  let tag6 = '<p class="card-text">'+productos[i].formaDisponible+'</p>';
+                  let tag7 = `</div></div></div></div></div>`;
+                  elemento = tag1+tag2+tag3+tag4+tag5+tag6+tag7;
+                  elementos = elemento + elementos;
+                  if (i%2 != 0){
+                    let tag8 = '<div class="row g-0">';
+                    let tag9 = '</div>';
+                    contenido = contenido + tag8 + elementos + tag9; 
+                    elementos = "";
+                  }
+                }        
+                document.getElementById(id_element_padre).innerHTML = contenido;
                 })
               .catch(function(error) {
                 console.log(error);

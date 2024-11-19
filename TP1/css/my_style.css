@@ -2,6 +2,10 @@
     border: solid 1px red;
 } */
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Evita el scroll horizontal */
+}
 
 /* header */
 #navbar{
@@ -41,12 +45,16 @@
 
 .card-flex{
     margin: 1%;
-    display: flex inline;
-    width: 45%;
+    /* display: flex inline; */
+    /* width: 45%; */
     background-color: rgba(255, 222, 145, 0.7);
 }
 .card-flex:hover{
     border-color: rgba(255, 222, 225, 0.9);
+}
+.card-flex img{
+    height: 250px;
+    object-fit: cover;
 }
 /*  */
 
