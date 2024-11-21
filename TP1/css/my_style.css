@@ -30,7 +30,30 @@ html, body {
     font-size:large;
     color: #bca078;
     font-weight: bold;
-    text-shadow: 2px 2px 4px #171006;
+    text-shadow: 2px 2px 4px #1b1001;
+}
+
+.btn-style1{
+    background-color: rgba(75, 50, 5, 0.89);
+    border: 1px solid rgba(54, 36, 1, 0.87);
+    color: #cf7806;
+    transition: background-color 0.3s;
+}
+.btn-style1:hover{
+    background-color: rgba(238, 158, 8, 0.61);
+}
+
+.indicador{
+    display: none;
+    color: #b3a108ee;
+}
+
+.nabvar-Logo{
+    transition: transform 0.5s;
+}
+.nabvar-Logo:hover{
+    transform: scale(1.1,1.1);
+    color: #2A0501;
 }
 /*  */
 
@@ -45,12 +68,15 @@ html, body {
 
 .card-flex{
     margin: 1%;
-    /* display: flex inline; */
-    /* width: 45%; */
     background-color: rgba(255, 222, 145, 0.7);
+    border: 2px solid rgba(255, 222, 145, 0.7);
+    transition: border-color 0.4s, box-shadow 0.4s, transform 0.3s, background-color 0.3s;
 }
 .card-flex:hover{
+    background-color: rgba(250, 209, 112, 0.7);
     border-color: rgba(255, 222, 225, 0.9);
+    box-shadow: 0px 0px 10px rgba(255, 222, 225, 0.9);
+    transform: scale(1.003,1.003);
 }
 .card-flex img{
     height: 250px;
@@ -62,6 +88,19 @@ html, body {
 #fondo-img-presentacion{
     background-image: url(../img/fondo/fo6.jpg);
 }
+
+@keyframes escritura {
+    0%{
+        width: 0%;
+        visibility: hidden;
+      }
+    100%{width: 100%;}
+}
+
+#div-container-presentacion{
+    overflow: hidden;
+    animation: escritura 4s;
+}
 /*  */
 
 /* contacto.html file */
@@ -69,9 +108,32 @@ html, body {
     background-image: url(../img/fondo/fo4.jpg);
 }
 
+@keyframes alternarColor {
+    0%{color:#301e02;
+       text-shadow: 0px 0px 10px #754502;
+    }
+    20%{color:#251702;
+        text-shadow: 0px 0px 10px #64420e;
+    }
+    40%{color:#1d1201;
+        text-shadow: 0px 0px 10px #744f19;
+    }
+    60%{color:#241602;
+        text-shadow: 0px 0px 10px #8f5703;
+    }
+    80%{color:#3f2702;
+        text-shadow: 0px 0px 10px #4e391a;
+    }
+    100%{color:#2c1b03;
+        text-shadow: 0px 0px 10px #6d4304;
+    }
+}
+
 #container-contacto{
     text-align: center;
-    color: #3e2603;
+    color: #241601;
+    animation: alternarColor 2s linear infinite alternate;
+    text-shadow: 0px 0px 10px #835203;
 }
 
 #container-contacto h3{
@@ -79,6 +141,26 @@ html, body {
 }
 .info-item{
     padding: 2%;
+}
+
+@keyframes rotate {
+    0%{rotate: 0deg;}
+    100%{rotate: 360deg;}
+}
+
+.btn-select:hover{
+    outline: 3px dotted #1d1201;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes motoCierra{
+    0%{outline-offset:0px;}
+    100%{outline-offset:2px;}
+}
+
+.btn-motoCierra:hover{
+    outline: 3px dotted #1d1201;
+    animation: motoCierra 0.2s linear infinite;
 }
 /*  */
 
@@ -91,6 +173,33 @@ html, body {
     padding-top: 10%;
     padding-bottom: 10%;
 }
+#div-consulta h3{
+    color: black;
+}
+
+#form-consulta label{
+    color: black;
+}
+
+.input-consulta{
+    background-color: transparent;
+    border: 2px solid #3e2603;
+    transition: background-color 0.4s box-shadow 0.3s padding 2s;
+    color: black;
+    font-size: 1.2em;
+}
+.input-consulta:focus{
+    border: 2px solid #3e2603;
+    background-color: rgba(128, 86, 9, 0.521);
+    box-shadow: 0px 0px 10px rgba(54, 36, 1, 0.767);
+    color: black;
+    padding: 1%;
+}
+/* input:is(:-webkit-autofill, :autofill){
+    border: 2px solid #3e2603;
+    background-color: rgba(128, 86, 9, 0.521);
+    color: black;
+} */
 /*  */
 
 
@@ -102,7 +211,20 @@ html, body {
 .redes-footer{
     margin: 5% 0.2% 5% 0.2%;
 }
+
+.btn-style2{
+    background-color: rgba(75, 50, 5, 0.89);
+    border: 1px solid rgba(54, 36, 1, 0.87);
+    color: #ff9102;
+    transition: background-color 0.3s;
+}
+.btn-style2:hover{
+    background-color: rgba(238, 158, 8, 0.61);
+}
 /*  */
+
+
+
 /* @media(min-width: 768px)
 {
     section{
