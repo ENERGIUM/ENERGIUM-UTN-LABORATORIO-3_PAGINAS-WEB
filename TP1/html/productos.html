@@ -113,26 +113,28 @@
                 // div5.setAttribute('class', 'col-md-8');
                 let contenido = "";
                 let elementos = "";
-                let elemento = "";
                 for (let i = 0; i < productos.length; i++){
-                  let tag1 = `<div class="col-sm-6 mb-3">
-                              <div class="card  card-flex">
-                              <div class="row g-0">
-                              <div class="col-md-4">`;
-                  let tag2 = '<img src="'+productos[i].imagen+'" class="img-fluid rounded-start" alt="'+productos[i].title+'">'
-                  let tag3 = `</div>
-                              <div class="col-md-8">
-                              <div class="card-body">`;
-                  let tag4 = '<h5 class="card-title">'+productos[i].title+'</h5>';
-                  let tag5 = '<p class="card-text">'+productos[i].decripcion+'</p>';
-                  let tag6 = '<p class="card-text">'+productos[i].formaDisponible+'</p>';
-                  let tag7 = `</div></div></div></div></div>`;
-                  elemento = tag1+tag2+tag3+tag4+tag5+tag6+tag7;
+                  let elemento = `<div class="col-sm-6 mb-3">
+                                    <div class="card  card-flex">
+                                      <div class="row g-0">
+                                        <div class="col-md-4">
+                                          <img src="${productos[i].imagen}" class="img-fluid rounded-start" alt="${productos[i].title}">
+                                        </div>
+                                        <div class="col-md-8">
+                                          <div class="card-body">
+                                            <h5 class="card-title">${productos[i].title}</h5>
+                                            <p class="card-text">${productos[i].decripcion}</p>
+                                            <p class="card-text">${productos[i].formaDisponible}</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>`;
                   elementos = elemento + elementos;
                   if (i%2 != 0){
-                    let tag8 = '<div class="row g-0">';
-                    let tag9 = '</div>';
-                    contenido = contenido + tag8 + elementos + tag9; 
+                    let apertura = '<div class="row g-0">';
+                    let cierre = '</div>';
+                    contenido = contenido + apertura + elementos + cierre; 
                     elementos = "";
                   }
                 }        
@@ -142,6 +144,21 @@
                 console.log(error);
               });
       }
+    </script>
+    <script>
+      const cards = document.querySelectorAll('card');
+      let maxHeight = 0;
+      console.log(cards);
+      // Encuentra la altura máxima
+      cards.forEach(card => {
+        maxHeight = Math.max(maxHeight, card.offsetHeight);
+        console.log(maxHeight);
+      });
+    
+      // Aplica la altura máxima a todas las tarjetas
+      cards.forEach(card => {
+        card.style.height = `${maxHeight}px`;
+      });
     </script>
   </body>
   <script src="../js/bootstrap.js"></script>

@@ -11,6 +11,13 @@ html, body {
 #navbar{
     font-size:larger;
 }
+.nabvar-Logo{
+    transition: transform 0.5s;
+}
+.nabvar-Logo:hover{
+    transform: scale(1.1,1.1);
+    color: #2A0501;
+}
 /*  */
 
 /* index.html file */
@@ -46,14 +53,7 @@ html, body {
 .indicador{
     display: none;
     color: #b3a108ee;
-}
-
-.nabvar-Logo{
-    transition: transform 0.5s;
-}
-.nabvar-Logo:hover{
-    transform: scale(1.1,1.1);
-    color: #2A0501;
+    animation: none;
 }
 /*  */
 
@@ -195,6 +195,13 @@ html, body {
     color: black;
     padding: 1%;
 }
+.input-consulta-datos{
+    border: 2px solid #3e2603;
+    background-color: rgba(128, 86, 9, 0.521);
+    box-shadow: 0px 0px 10px rgba(54, 36, 1, 0.767);
+    color: black;
+}
+
 /* input:is(:-webkit-autofill, :autofill){
     border: 2px solid #3e2603;
     background-color: rgba(128, 86, 9, 0.521);

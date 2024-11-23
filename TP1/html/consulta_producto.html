@@ -47,29 +47,29 @@
         <form id="form-consulta" action="#" method="post">
           <div class="mb-3">
             <label for="inputName" class="form-label">Nombre</label>
-            <input type="text" class="form-control input-consulta" id="inputName">
+            <input type="text" class="form-control input-consulta" id="inputName" onfocus="changeValue('inputName','input-consulta-datos')">
           </div>
           <div class="mb-3">
             <label for="inputLastName" class="form-label">Apellido</label>
-            <input type="text" class="form-control input-consulta" id="inputLastName">
+            <input type="text" class="form-control input-consulta" id="inputLastName" onfocus="changeValue('inputLastName','input-consulta-datos')">
           </div>
           <div class="mb-3">
             <label for="inputFechaNacimiento" class="form-label">Fecha Nacimiento</label>
-            <input type="date" class="form-control input-consulta" id="inputFechaNacimiento" min="1930-01-01">
+            <input type="date" class="form-control input-consulta" id="inputFechaNacimiento" min="1930-01-01" onfocus="changeValue('inputFechaNacimiento','input-consulta-datos')">
           </div>
           <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" class="form-control input-consulta" id="inputEmail">
+            <input type="email" class="form-control input-consulta" id="inputEmail" onfocus="changeValue('inputEmail','input-consulta-datos')">
           </div>
           <div class="mb-3">
             <label for="inputQuerry" class="form-label">Consulta</label>
-            <textarea class="form-control input-consulta" id="inputQuerry"></textarea>
+            <textarea class="form-control input-consulta" id="inputQuerry" onfocus="changeValue('inputQuerry','input-consulta-datos')"></textarea>
           </div>
           <div class="mb-3 form-check">
             <label class="form-check-label" for="inputConfirmDatos">Confirmar Datos</label>
             <input required type="checkbox" class="form-check-input input-consulta" id="inputConfirmDatos">
           </div>
-          <button class="btn btn-primary" onclick="validarForm()">Enviar</button>
+          <button class="btn btn-style2" onclick="validarForm()">Enviar</button>
         </form>
       </div>
     </section>
@@ -126,6 +126,16 @@
       }else return true;
     }
 
+  function changeValue(element_id, className_Add){
+      const name = document.getElementById(element_id);
+      name.addEventListener('input', ()=>{
+        if (name.value.trim() !== '') {
+          name.classList.add(className_Add);
+        }else {
+          name.classList.remove(className_Add);    
+        }   
+      });
+    }
     function validarApellido(){
     var lastname = document.getElementById("inputLastName").value;
       if(lastname == ""){
