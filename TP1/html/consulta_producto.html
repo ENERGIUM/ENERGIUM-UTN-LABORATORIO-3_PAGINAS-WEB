@@ -7,6 +7,7 @@
     <meta name="keywords" content="Madera, Empresa, Maderos, Tablas">
     <meta name="author" content="Desarrollador">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/sweetalert2.min.css">
     <link rel="stylesheet" href="../css/my_style.css">
     <link rel="icon" type="image/x-icon" href="../img/icon/favicon.ico">
     <title>Maderos S.A.</title>
@@ -55,7 +56,7 @@
           </div>
           <div class="mb-3">
             <label for="inputFechaNacimiento" class="form-label">Fecha Nacimiento</label>
-            <input type="date" class="form-control input-consulta" id="inputFechaNacimiento" min="1930-01-01" onfocus="changeValue('inputFechaNacimiento','input-consulta-datos')">
+            <input type="date" class="form-control input-consulta" id="inputFechaNacimiento" onfocus="changeValue('inputFechaNacimiento','input-consulta-datos')">
           </div>
           <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
@@ -69,7 +70,7 @@
             <label class="form-check-label" for="inputConfirmDatos">Confirmar Datos</label>
             <input required type="checkbox" class="form-check-input input-consulta" id="inputConfirmDatos">
           </div>
-          <button class="btn btn-style2" onclick="validarForm()">Enviar</button>
+          <button type="button" id="btn-enviar" class=" btn btn-style2" onclick="validarForm()">Enviar</button>
         </form>
       </div>
     </section>
@@ -108,20 +109,27 @@
     </footer>
   </body>
   <script src="../js/bootstrap.js"></script>
+  <script src="../js/sweetalert2.all.min.js"></script>
   <script>
-
     function validarForm(){
-      var flagEnviar = true;
+      let flagEnviar = true;
       flagEnviar = (validarNombre() && validarApellido() && validarFechaNacimiento() && validarEmail() && validarConsulta() && validarCheckDatos());
       if (flagEnviar){
-        document.getElementById("form-consulta").submit();
-        alert("Consulta enviada, Gracias por su consulta");
+        Swal.fire({
+            title: "Consulta enviada, ¡Gracias por su consulta!",
+            icon: "success",
+        }).then((isOkay) => {
+          if (isOkay){
+            document.getElementById("form-consulta").submit();
+          }
+        });
       }
     }
+    
    function validarNombre(){
-    var name = document.getElementById("inputName").value;
-      if(name == ""){
-        alert("Por favor, ingrese un Nombre");
+    let name = document.getElementById("inputName").value;
+      if(name.trim() === ""){
+        Swal.fire({title: "Alerta, Campo de Nombre Vacio",text: "Por favor, ingrese un Nombre",icon: "warning"});
         return false;
       }else return true;
     }
@@ -137,9 +145,9 @@
       });
     }
     function validarApellido(){
-    var lastname = document.getElementById("inputLastName").value;
-      if(lastname == ""){
-        alert("Por favor, ingrese un Apellido");
+    let lastname = document.getElementById("inputLastName").value;
+      if(lastname.trim() === ""){
+        Swal.fire({title: "Alerta, Campo de Apellido Vacio",text: "Por favor, ingrese un Apellido",icon: "warning"});
         return false;
       }else return true;
     }
@@ -152,60 +160,68 @@
       // console.log("fechaNac: ",fechaNac);
       // console.log("fechaActual.getFullYear: ",fechaActual.getFullYear());
       // console.log("anioFechaNac", anioFechaNac);
-      if (fechaNac == ""){
-        alert("Por favor, ingrese una fecha de nacimiento");
+      if (fechaNac === ""){
+        Swal.fire({title: "Alerta, Campo de Fecha Vacio",text: "Por favor, ingrese una fecha de nacimiento",icon: "warning"});
         return false;
       }else if (anioFechaNac < 1930){
-        alert("La fecha ingresada es inferior a 01/01/1930");
+        Swal.fire({title: "Fecha Invalida",text: "La fecha ingresada es inferior a 01/01/1930",icon: "warning"});
         return false;
       }else if ((fechaActual.getFullYear() - anioFechaNac) < 18){
-        alert("Usted es menor de edad, para realizar consultas debe ser mayor a 18 años");
+        Swal.fire({title: "Edad Insuficiente",text: "Usted es menor de edad, para realizar consultas debe ser mayor a 18 años",icon: "warning"});
         return false;
       }
       else return true;
     }
 
     function validarEmail(){
-      var flagEnviar = false;
-      var emailSoportados = ["gmail.com", "hotmail.com", "outlook.com"];
-      var email = document.getElementById("inputEmail").value;
-      if (email != "" && email.indexOf("@") == -1){
-        alert("Por favor revise si a ingresado @");
+      let flagEnviar = false;
+      let emailSoportados = ["gmail.com", "hotmail.com", "outlook.com"];
+      let email = document.getElementById("inputEmail").value;
+      email = email.trim();
+      if (email !== "" && email.indexOf("@") === -1){
+        Swal.fire({title: "Email Invalido",text: "Por favor revise si a ingresado @",icon: "warning"});
         return false;
       }
-      var dominio = email.substring(email.indexOf("@")+1);
+      if (email !== "" &&(email.slice(0,email.indexOf("@"))) === ""){
+        Swal.fire({title: "Email Invalido",text: "Por favor ingresa texto antes del @",icon: "warning"});
+        return false;
+      }
+      let dominio = email.substring(email.indexOf("@")+1);
       // console.log("email: "+email);
       // console.log("dominio: "+dominio);
       // console.log(email.indexOf("@"));
-      for (var i = 0; i < emailSoportados.length; i++){
-        if(dominio == emailSoportados[i]){
+      // console.log(email.slice(0,email.indexOf("@")));
+      for (let emails of emailSoportados){
+        if(dominio == emails){
           flagEnviar = true;
-          return true;
-          break;
+          return flagEnviar;
         }
       }
-      if(flagEnviar == false && email == ""){
-        alert("Por favor ingrese un email");
+      
+      if(!flagEnviar && email === ""){
+        Swal.fire({title: "Alerta, Campo de Email Vacio",text: "Por favor ingrese un email",icon: "warning"});
         return false;
-      } else if(flagEnviar == false){
-        alert("Email no soportado o invalido, Por favor intente de nuevo. \nEmails soportados: \n"+emailSoportados[0]+"\n"+emailSoportados[1]+"\n"+emailSoportados[2]);
+      } else if(!flagEnviar){
+        Swal.fire({title: "Error Email no Soportado o Invalido",
+                   text: "Por favor intente de nuevo. \nEmails soportados: \n"+emailSoportados[0]+"\n"+emailSoportados[1]+"\n"+emailSoportados[2],
+                   icon: "warning"});
         return false;
       }
     }
 
     function validarConsulta(){
-      var consulta = document.getElementById("inputQuerry").value;
-      if(consulta == ""){
-        alert("Por favor, ingrese una consulta");
+      let consulta = document.getElementById("inputQuerry").value;
+      if(consulta.trim() === ""){
+        Swal.fire({title: "Alerta, Campo de Consulta Vacio",text: "Por favor, ingrese una consulta",icon: "warning"});
         return false;
       }else return true;
     }
 
     function validarCheckDatos(){
-      var dato = document.getElementById("inputConfirmDatos").checked;
+      let dato = document.getElementById("inputConfirmDatos").checked;
       //console.log("check :" +dato);
       if(!(dato)){
-        alert("Por favor, Confirme los datos");
+        Swal.fire({title: "Alerta, Confirme Los Datos",text: "Por favor, Confirme los datos",icon: "warning"});
         return false;
       }else return true;
     }
