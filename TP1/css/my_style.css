@@ -30,6 +30,7 @@ html, body {
     background-repeat: no-repeat;
     background-attachment: fixed;  
     background-size: cover;
+    background-position: center;
 }
 
 .presentacion{
@@ -53,7 +54,6 @@ html, body {
 .indicador{
     display: none;
     color: #b3a108ee;
-    animation: none;
 }
 /*  */
 
@@ -229,12 +229,3 @@ html, body {
     background-color: rgba(238, 158, 8, 0.61);
 }
 /*  */
-
-
-
-/* @media(min-width: 768px)
-{
-    section{
-        font-size:larger !important;
-    }
-} */

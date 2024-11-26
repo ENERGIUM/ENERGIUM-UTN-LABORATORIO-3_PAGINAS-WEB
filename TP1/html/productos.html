@@ -81,53 +81,49 @@
     <script>
       ObtenerJsonYConstruirHTML('../json/productos.json', 'content-fabricados');
       async function ObtenerJsonYConstruirHTML(url, id_element_padre){
-        // const element_padre = document.getElementById(id_element_padre);
-        const init ={method: 'GET',
-                  headers: {
-                    'Content-type':'application/json'
-                  },
-                  mode:'cors',
-                  cache:'default'};
-        await fetch(url, init)
-              .then(respuesta=> {
-                if (!respuesta.ok) {
-                  throw new Error(`HTTP error! Estado: ${respuesta.status}`);
-                }
-                return respuesta.json();
-              })
-              .then(data => {
-                const productos = data; 
-                let contenido = "";
-                let elementos = "";
-                let cantidadElementos = productos.length;
-                for (let i = 0; i < cantidadElementos; i++){
-                  let elemento = `<div class="col-sm-6 mb-3">
-                                    <div class="card card-flex h-100">
-                                      <div class="row g-0">
-                                        <div class="col-md-4">
-                                          <img src="${productos[i].imagen}" class="img-fluid rounded-start" alt="${productos[i].title}">
-                                        </div>
-                                        <div class="col-md-8">
-                                          <div class="card-body">
-                                            <h5 class="card-title">${productos[i].title}</h5>
-                                            <p class="card-text">${productos[i].decripcion}</p>
-                                            <p class="card-text">${productos[i].formaDisponible}</p>
-                                          </div>
-                                        </div>
-                                      </div>
+        try{
+          const init ={method: 'GET',
+                    headers: {
+                      'Content-type':'application/json'
+                    },
+                    mode:'cors',
+                    cache:'default'};
+          const archivo = await fetch(url, init);
+          if (!archivo.ok){
+            throw new Error(`HTTP error! Estado: ${respuesta.status}`);
+          }
+          const productos = await archivo.json();
+          let contenido = "";
+          let elementos = "";
+          let cantidadElementos = productos.length;
+          for (let i = 0; i < cantidadElementos; i++){
+            let elemento = `<div class="col-sm-6 mb-3">
+                              <div class="card card-flex h-100">
+                                <div class="row g-0">
+                                  <div class="col-md-4">
+                                    <img src="${productos[i].imagen}" class="img-fluid  rounded-start" alt="${productos[i].title}">
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 class="card-title">${productos[i].title}</h5>
+                                      <p class="card-text">${productos[i].decripcion}</p>
+                                      <p class="card-text">${productos[i].formaDisponible}</p>
                                     </div>
-                                  </div>`;
-                  elementos = elemento + elementos;
-                  if (i%2 != 0){
-                    contenido = contenido + '<div class="row g-0">' + elementos + '</div>'; 
-                    elementos = "";
-                  }
-                }        
-                document.getElementById(id_element_padre).innerHTML = contenido;
-                })
-              .catch(function(error) {
-                console.log(error);
-              });
+                                  </div>
+                                </div>
+                              </div>
+                            </div>`;
+            elementos = elemento + elementos;
+            if (i%2 != 0){
+              contenido = contenido + '<div class="row g-0">' + elementos + '</div>'; 
+              elementos = "";
+            }
+          }        
+          document.getElementById(id_element_padre).innerHTML = contenido;
+        }
+        catch(error) {
+          console.log(error);
+        }
       }
     </script>
   </body>
