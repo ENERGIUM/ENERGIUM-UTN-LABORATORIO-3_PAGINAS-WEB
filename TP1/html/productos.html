@@ -80,15 +80,9 @@
     </footer>
     <script>
       ObtenerJsonYConstruirHTML('../json/productos.json', 'content-fabricados');
-      async function ObtenerJsonYConstruirHTML(url, id_element_padre){
+      async function ObtenerJsonYConstruirHTML(url = '', id_element_padre = ''){
         try{
-          const init ={method: 'GET',
-                    headers: {
-                      'Content-type':'application/json'
-                    },
-                    mode:'cors',
-                    cache:'default'};
-          const archivo = await fetch(url, init);
+          const archivo = await fetch(url);
           if (!archivo.ok){
             throw new Error(`HTTP error! Estado: ${respuesta.status}`);
           }
